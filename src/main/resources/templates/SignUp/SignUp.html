@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/signup.js" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script><link rel="stylesheet" href="../../static/css/style.css">
+</head>
+<body>
+    <section>
+        <form method="post" th:action="@{/signup/guardar}" th:object="${cliente}">
+        <div class="inputbox">
+            <ion-icon name="person-outline"></ion-icon>
+            <input class="form-control" th:field="${cliente.nombre}" required minlength="2" type="text">
+            <label>Nombre</label>
+        </div>
+        <div class="inputbox">
+            <ion-icon name="person-outline"></ion-icon>
+            <input class="form-control" th:field="${cliente.apellido}" required minlength="2" type="text">
+            <label>Apellido</label>
+        </div>
+        <div class="inputbox">
+            <ion-icon name="mail-outline"></ion-icon>
+            <input class="form-control" th:field="${cliente.email}" required minlength="2" type="email">
+            <label>Correo</label>
+        </div>
+        <div class="inputbox">
+            <input class="form-control" th:field="${cliente.password}" required minlength="2" type="password">
+            <label>Contraseña</label>
+        </div>
+        <div class="inputbox">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <input type="password" required>
+            <label>Confirmar contraseña</label>
+        </div>
+        <button type="submit">Registrarse</button>
+        <div>
+            <p> ¿Ya tienes una cuenta? <a href="/login">Iniciar Sesión</a></p>
+        </div>
+        </form>
+
+
+
+    </section>
+</body>
+</html>
