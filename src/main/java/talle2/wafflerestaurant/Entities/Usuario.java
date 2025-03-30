@@ -10,6 +10,7 @@ import lombok.*;
 @DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING) // Columna que indica el tipo de usuario
 @Entity
 @Table(name="Usuario")
+
 public abstract class Usuario {
 
     @Id
@@ -21,4 +22,3 @@ public abstract class Usuario {
     private String email;
     private String password;
 }
-
