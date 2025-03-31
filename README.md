@@ -1,4 +1,4 @@
-# Nombre del Proyecto
+# WaffleRestaurant
 
 ## Lista de Pendientes
 - [ ] Completar la página de perfil de usuario
