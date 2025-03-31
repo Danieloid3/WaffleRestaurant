@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Registro</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/styleSignup.css">
     <script src="/js/signup.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script><link rel="stylesheet" href="../../static/css/style.css">
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <section>
+    <section class="signup-section">
         <form method="post" th:action="@{/signup/guardar}" th:object="${cliente}">
         <div class="inputbox">
             <ion-icon name="person-outline"></ion-icon>
@@ -40,8 +41,9 @@
             <p> ¿Ya tienes una cuenta? <a href="/login">Iniciar Sesión</a></p>
         </div>
         </form>
-
-
+        <div th:if="${error}" style="color: red; text-align: center; margin-top: 15px;" th:text="${error}">
+            Error
+        </div>
 
     </section>
 </body>

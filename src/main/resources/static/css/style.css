@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 * {
     margin: 0;
@@ -12,15 +12,17 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-image: url(../background.jpg);
+    background-image: url(../images/background.jpg);
+    background-color: #000;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
+/* Estilos para los formularios de login/signup que no interfieren con inicio */
 section {
     position: relative;
-    max-width: 400px;  /* Reducir el ancho del formulario */
+    max-width: 400px;
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
@@ -33,39 +35,18 @@ section {
     transition: all 0.5s ease-in-out;
 }
 
-h1 {
-    font-size: 2rem;
-    color: #fff;
+h2 {
+    font-size: 2em;
+    color: #EED09D;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .inputbox {
     position: relative;
-    width: 100%; /* Ajuste para mantener todos los inputs alineados */
-    margin: 10px 0;  /* Reducir espacio */
-    border-bottom: 2px solid #fff;
-    display: flex;
-    align-items: center;
-}
-
-.inputbox input {
-    width: 100%;
-    height: 40px;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    padding: 5px;
-    color: #fff;
-}
-
-.inputbox ion-icon {
-    position: absolute;
-    right: 8px;
-    color: #fff;
-    font-size: 1.2rem;
-    top: 12px;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid #EED09D;
 }
 
 .inputbox label {
@@ -73,52 +54,134 @@ h1 {
     top: 50%;
     left: 5px;
     transform: translateY(-50%);
-    color: #fff;
-    font-size: 1rem;
+    color: #EED09D;
+    font-size: 1em;
     pointer-events: none;
-    transition: all 0.5s ease-in-out;
+    transition: 0.5s;
 }
 
-input:focus ~ label,
-input:valid ~ label {
+.inputbox input:focus ~ label,
+.inputbox input:valid ~ label {
     top: -5px;
-    font-size: 0.9rem;
-    color: #a8a8a8;
 }
 
-/* Botón fuera de los inputbox */
+.inputbox input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0 35px 0 5px;
+    color: #EED09D;
+}
+
+.inputbox ion-icon {
+    position: absolute;
+    right: 8px;
+    color: #EED09D;
+    font-size: 1.2em;
+    top: 20px;
+}
+
+.forget {
+    margin: -15px 0 15px;
+    font-size: 0.9em;
+    color: #EED09D;
+    display: flex;
+    justify-content: center;
+}
+
+.forget label input {
+    margin-right: 3px;
+}
+
+.forget a {
+    color: #F19C29;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.forget a:hover {
+    color: #C7781A;
+    text-decoration: underline;
+}
+
 button {
     width: 100%;
-    height: 45px;
+    height: 40px;
     border-radius: 40px;
-    background-color: rgba(255, 255, 255, 1);
+    background: #F19C29;
+    color: #6E3D23;
+    font-weight: 600;
     border: none;
     outline: none;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.4s ease;
-    margin-top: 20px;
+    font-size: 1em;
+    margin-top: 10px;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: #C7781A;
+    color: #fff;
 }
 
 .register {
-    font-size: 0.9rem;
-    color: #fff;
+    font-size: 0.9em;
+    color: #EED09D;
     text-align: center;
-    margin: 15px 0 10px;
+    margin: 25px 0 10px;
 }
 
 .register p a {
+    color: #F19C29;
     text-decoration: none;
-    color: #fff;
     font-weight: 600;
 }
 
 .register p a:hover {
+    color: #C7781A;
     text-decoration: underline;
-    color: #a8a8a8;
+}
+
+/* Mensajes de error */
+div[style*="color: red"] {
+    color: #F19C29 !important;
+    background-color: rgba(110, 61, 35, 0.5);
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #C7781A;
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Variables de colores de la paleta para referencia */
+:root {
+    --color-primary: #F19C29;
+    --color-dark: #6E3D23;
+    --color-medium: #907454;
+    --color-light: #EED09D;
+    --color-accent: #C7781A;
+}
+
+/* Estilos para que no interfieran con la página de inicio */
+body.inicio-body section {
+    background-color: transparent;
+    border: none;
+    backdrop-filter: none;
+    max-width: 100%;
+    padding: 0;
+}
+
+/* Responsive para dispositivos móviles */
+@media (max-width: 360px) {
+    section {
+        padding: 1.5rem;
+    }
+
+    .inputbox {
+        width: 100%;
+    }
 }

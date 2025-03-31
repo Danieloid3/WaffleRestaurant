@@ -1,0 +1,68 @@
+/* styleLogin.css - Estilos para página de login con la nueva paleta */
+.login-section {
+    background-color: rgba(110, 61, 35, 0.85) !important; /* #6E3D23 con transparencia */
+    border: 2px solid #eed09d;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Mejorar visibilidad de textos */
+.login-section label,
+.login-section p {
+    color: #eed09d !important;
+}
+
+.login-section a {
+    color: #f19c29 !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.login-section a:hover {
+    color: #c7781a !important;
+    text-decoration: underline;
+}
+
+/* Color del texto en los inputs */
+.login-section .inputbox input {
+    color: #eed09d !important;
+    border-bottom: 2px solid #f19c29;
+}
+
+.login-section .inputbox input:focus {
+    border-bottom: 2px solid #eed09d;
+}
+
+/* Efecto en inputs */
+.login-section .inputbox input:focus ~ label,
+.login-section .inputbox input:valid ~ label {
+    color: #f19c29 !important;
+    font-weight: 600;
+}
+
+/* Iconos */
+.login-section ion-icon {
+    color: #f19c29;
+}
+
+/* Botón de inicio de sesión */
+.login-section button {
+    background-color: #f19c29;
+    color: #6e3d23;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover en botón */
+.login-section button:hover {
+    background-color: #c7781a;
+    color: #fff;
+}
+
+/* Mensaje de error */
+.login-section div[style*="color: red"] {
+    color: #f19c29 !important;
+    background-color: rgba(110, 61, 35, 0.5);
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #c7781a;
+}

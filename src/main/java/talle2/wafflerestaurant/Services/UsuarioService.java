@@ -1,60 +1,47 @@
 package talle2.wafflerestaurant.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import talle2.wafflerestaurant.Entities.Cliente;
 import talle2.wafflerestaurant.Entities.Usuario;
 import talle2.wafflerestaurant.Repositories.UsuarioRepository;
 
-
-import java.util.List;
-import java.util.Optional;
-
 @Service
 public class UsuarioService {
+
     @Autowired
-    private UsuarioRepository repo;
+    private UsuarioRepository usuarioRepository;
 
-    public List<Usuario> listAll() {
-        return (List<Usuario>) repo.findAll();
-    }
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public void save(Usuario usuario) {
-        repo.save(usuario);
-    }
-
-    public Usuario get(long id) throws UsuarioNotFoundException {
-        {
-            Optional<Usuario> usuario = repo.findById(id);
-            if (usuario.isPresent()) {
-                return usuario.get();
-            } else {
-                throw new UsuarioNotFoundException("No se ha encontrado el usuario con id: " + id);//
-
-            }
+        // Asignar role según tipo
+        if (usuario instanceof Cliente) {
+            usuario.setRole("ROLE_CLIENT");
         }
 
+        // Encriptar contraseña
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        usuarioRepository.save(usuario);
     }
 
-    public void delete(long id) throws UsuarioNotFoundException {
-        Long count = repo.countById(id);
-        if (count == null || count == 0) {
-            throw new UsuarioNotFoundException("No se ha encontrado el usuario con id: " + id);
-        } else {
-            repo.deleteById(id);
+    public void createAdminIfNotExists() {
+        if (usuarioRepository.findByEmail("admin@waffle.com").isEmpty()) {
+            Usuario admin = new Usuario();
+            admin.setNombre("Administrador");
+            admin.setApellido("Sistema");
+            admin.setEmail("admin@waffle.com");
+            admin.setPassword(passwordEncoder.encode("admin"));
+            admin.setRole("ROLE_ADMIN");
+            usuarioRepository.save(admin);
+            System.out.println("Administrador creado exitosamente");
         }
     }
 
-     public boolean validarUsuario(String email, String password) {
-         Optional<Usuario> usuario = repo.findByEmail(email);
-
-         if (usuario.isPresent()) {
-             if(usuario.get().getPassword().equals(password)){
-                 return true;
-             }
-         }
-         return false;
+    public boolean existsByEmail(String email) {
+        return usuarioRepository.findByEmail(email).isPresent();
     }
+
 }

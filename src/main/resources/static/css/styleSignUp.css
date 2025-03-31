@@ -1,0 +1,70 @@
+/* styleSignup.css con la nueva paleta */
+.signup-section {
+    background-color: rgba(110, 61, 35, 0.85) !important; /* #6E3D23 con transparencia */
+    border: 2px solid #eed09d;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Mejorar visibilidad de textos */
+.signup-section label,
+.signup-section p {
+    color: #eed09d !important;
+}
+
+.signup-section a {
+    color: #f19c29 !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.signup-section a:hover {
+    color: #c7781a !important;
+    text-decoration: underline;
+}
+
+/* Color del texto en los inputs */
+.signup-section .inputbox input {
+    color: #eed09d !important;
+    border-bottom: 2px solid #f19c29;
+}
+
+.signup-section .inputbox input:focus {
+    border-bottom: 2px solid #eed09d;
+}
+
+/* Efecto hover en inputs */
+.signup-section .inputbox input:focus ~ label,
+.signup-section .inputbox input:valid ~ label {
+    color: #f19c29 !important;
+    font-weight: 600;
+    top: -5px;
+}
+
+/* Iconos */
+.signup-section ion-icon {
+    color: #f19c29;
+}
+
+/* Botón de registro */
+.signup-section button {
+    background-color: #f19c29;
+    color: #6e3d23;
+    font-weight: 600;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover en botón */
+.signup-section button:hover {
+    background-color: #c7781a;
+    color: #fff;
+}
+
+/* Mensaje de error */
+.signup-section .error-message {
+    color: #f19c29 !important;
+    background-color: rgba(110, 61, 35, 0.5);
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #c7781a;
+}
