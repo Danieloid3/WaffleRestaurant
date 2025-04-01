@@ -1,0 +1,87 @@
+/* Fondo con imagen de waffles */
+.menu-container {
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+}
+
+/* Estilos generales */
+body {
+    background-color: #EED09D;
+    color: #6E3D23;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    color: #C7781A;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Tarjetas de productos */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
+    min-height: 500px; /* Ajusta este valor según necesites */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    height: 250px; /* Establece una altura fija para las imágenes */
+    object-fit: cover; /* Hace que las imágenes se recorten sin distorsionarse */
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    flex-grow: 1; /* Hace que el contenido del cuerpo de la tarjeta se expanda */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Títulos y descripciones */
+.card-title {
+    color: #6E3D23;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.card-text {
+    font-size: 1em;
+    color: #907454;
+}
+
+/* Precio */
+.card-price {
+    font-size: 1.2em;
+    color: #F19C29;
+    font-weight: bold;
+}
+
+/* Botón */
+.btn-add {
+    background-color: #F19C29;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.btn-add:hover {
+    background-color: #C7781A;
+}
