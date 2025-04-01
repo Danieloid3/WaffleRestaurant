@@ -10,16 +10,17 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "producto")
+@Table(name = "productos")
 public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_producto;
+    private int id;
 
     private String nombre;
-    private float precio;
+    private double precio;
     private String descripcion;
+    private String imagen;
 
     // Relación Muchos a Muchos con Pedido
     @ManyToMany(mappedBy = "productos")

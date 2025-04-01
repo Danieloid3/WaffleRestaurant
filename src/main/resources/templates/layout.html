@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang ="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Waffle Restaurant</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/styleInicio.css">
+</head>
+<body class="inicio-body">
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark" th:fragment="navbar">
+    <div class="container">
+        <a class="navbar-brand" href="/inicio">
+            <img src="/images/icono.png" alt="Waffle Restaurant" height="40" class="me-2">
+            Waffle Restaurant
+
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link" href="/admin/productos">
+                        <i class="fas fa-utensils me-1"></i> Gestionar Productos
+                    </a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link" href="/admin/inventario">
+                        <i class="fas fa-box me-1"></i> Gestionar Inventario
+                    </a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('CLIENT')">
+                    <a class="nav-link" href="/menu">
+                        <i class="fas fa-book-open me-1"></i> Ver Menú
+                    </a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('CLIENT')">
+                    <a class="nav-link" href="/pedidos">
+                        <i class="fas fa-shopping-bag me-1"></i> Mis Pedidos
+                    </a>
+                </li>
+                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user me-1"></i> <span sec:authentication="name"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li>
+                        <span class="dropdown-item-text">Rol:
+                            <span th:with="auth=${#authentication.principal.authorities[0].authority}">
+                                <span th:switch="${auth}">
+                                    <span th:case="'ROLE_CLIENT'">Cliente</span>
+                                    <span th:case="'ROLE_ADMIN'">Administrador</span>
+                                    <span th:case="*" th:text="${auth}"></span>
+                                </span>
+                            </span>
+                        </span>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt me-1"></i> Cerrar Sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<footer class="py-4" th:fragment="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h5>Waffle Restaurant</h5>
+                <p>Los mejores waffles hechos con amor y los ingredientes más frescos.</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Horario</h5>
+                <p>Lunes a Viernes: 8:00 AM - 8:00 PM<br>
+                    Sábado y Domingo: 9:00 AM - 10:00 PM</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Síguenos</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="text-center">
+            <p>&copy; 2023 Waffle Restaurant - Todos los derechos reservados</p>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
