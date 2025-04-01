@@ -18,6 +18,11 @@ public class Pago implements Serializable {
     private String tipoDePago;
     private float monto;
 
+    // Relación 1:1 con Factura
+    @OneToOne
+    @JoinColumn(name="id_factura", referencedColumnName = "id_factura", nullable = false, unique = true)
+    private Factura factura;
+
     // Método para generar un pago
     public void generarPago(int id_pedido) {
         // Lógica para generar el pago con el id_pedido

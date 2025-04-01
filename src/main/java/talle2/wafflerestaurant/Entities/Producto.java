@@ -1,7 +1,10 @@
 package talle2.wafflerestaurant.Entities;
 
+import java.util.List;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -12,13 +15,13 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(nullable = false)
+    private int id_producto;
+
     private String nombre;
-    @Column(nullable = false)
-    private double precio;
-    @Column(nullable = true)
+    private float precio;
     private String descripcion;
 
-
+    // Relación Muchos a Muchos con Pedido
+    @ManyToMany(mappedBy = "productos")
+    private List<Pedido> pedidos;
 }
