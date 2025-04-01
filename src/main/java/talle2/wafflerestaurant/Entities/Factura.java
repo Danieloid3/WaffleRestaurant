@@ -5,11 +5,14 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import talle2.wafflerestaurant.Entities.Pedido;
+
+@Entity  // Indica que esta clase es una entidad JPA
+@Table(name = "factura")  // Especifica el nombre de la tabla en la base de datos
 @Data  // Genera getters, setters, toString(), equals(), y hashCode()
 @NoArgsConstructor  // Genera un constructor vacío
 @AllArgsConstructor  // Genera un constructor con todos los atributos
-@Entity  // Indica que esta clase es una entidad JPA
-@Table(name = "factura")  // Especifica el nombre de la tabla en la base de datos
+
 public class Factura implements Serializable {
 
     @Id
@@ -22,6 +25,15 @@ public class Factura implements Serializable {
 
     @Column(name = "estado", nullable = false)
     private boolean estado_factura;
+
+    //Relacion 1:1 con Pedido
+    @OneToOne
+    @JoinColumn(name="id_pedido", referencedColumnName = "id_pedido", nullable = false, unique = true)
+    private Pedido pedido;
+
+    // Relación 1:1 con Pago
+    @OneToOne(mappedBy = "factura", cascade = CascadeType.ALL)
+    private Pago pago;
 
      // Método para generar una factura
      public void generarFactura(int id_cliente, int id_pedido, int id_pago) {

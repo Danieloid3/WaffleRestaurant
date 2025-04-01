@@ -1,9 +1,8 @@
-import talle2.wafflerestaurant.Entities.Cliente;
+package talle2.wafflerestaurant.Entities;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Data 
 @NoArgsConstructor
@@ -18,6 +17,11 @@ public class Pago implements Serializable {
     
     private String tipoDePago;
     private float monto;
+
+    // Relación 1:1 con Factura
+    @OneToOne
+    @JoinColumn(name="id_factura", referencedColumnName = "id_factura", nullable = false, unique = true)
+    private Factura factura;
 
     // Método para generar un pago
     public void generarPago(int id_pedido) {
