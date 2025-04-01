@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 import talle2.wafflerestaurant.Entities.Cliente;
 import talle2.wafflerestaurant.Repositories.ProductoRepository;
@@ -14,35 +16,46 @@ import talle2.wafflerestaurant.Entities.Producto;
 import talle2.wafflerestaurant.Repositories.UsuarioRepository;
 
 
-@DataJpaTest
+@SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(false)
-public class WafflerestaurantApplicationTests {
-@Autowired
-private ProductoRepository repo;
-private UsuarioRepository userRepo;
+class WafflerestaurantApplicationTests {
+
+    @Autowired
+    private ProductoRepository productoRepo;
+
+    @Autowired
+    private UsuarioRepository usuarioRepo;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Test
-    public void testCreateProducto() {
+    void testCreateProducto() {
         Faker faker = new Faker();
         Producto producto = new Producto();
         producto.setNombre(faker.food().ingredient());
         producto.setPrecio(faker.number().randomDouble(2, 1, 100));
         producto.setDescripcion(faker.food().spice());
-        Producto productoGuardado = repo.save(producto);
+
+        Producto productoGuardado = productoRepo.save(producto);
+
         Assertions.assertThat(productoGuardado).isNotNull();
         Assertions.assertThat(productoGuardado.getId()).isGreaterThan(0);
     }
 
     @Test
-    public void testCreateCliente() {
+    void testCreateCliente() {
         Faker faker = new Faker();
         Cliente cliente = new Cliente();
         cliente.setNombre(faker.name().firstName());
         cliente.setApellido(faker.name().lastName());
         cliente.setEmail(faker.internet().emailAddress());
-        Cliente clienteGuardado = userRepo.save(cliente);
+        cliente.setPassword(passwordEncoder.encode("password"));
+
+        Cliente clienteGuardado = usuarioRepo.save(cliente);
+
         Assertions.assertThat(clienteGuardado).isNotNull();
         Assertions.assertThat(clienteGuardado.getId()).isGreaterThan(0);
     }
-
 }
