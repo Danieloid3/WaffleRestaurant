@@ -1,9 +1,8 @@
-import talle2.wafflerestaurant.Entities.Cliente;
+package talle2.wafflerestaurant.Entities;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Data 
 @NoArgsConstructor

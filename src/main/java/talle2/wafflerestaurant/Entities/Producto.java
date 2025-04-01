@@ -1,4 +1,3 @@
-
 package talle2.wafflerestaurant.Entities;
 
 import jakarta.persistence.*;
@@ -8,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "producto")
+@Table(name = "productos")
 public class Producto {
 
     @Id
