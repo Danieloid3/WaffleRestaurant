@@ -1,20 +1,25 @@
-//import talle2.wafflerestaurant.Entities.BaseEntity;
-//import jakarta.persistence.*;
-//import lombok.Data;
-//
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Entity
-//@Table(name = "producto")
-//public class Producto {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private int id_producto;
-//
-//    private String nombre;
-//    private float precio;
-//    private String descripcion;
-//
-//}
+
+package talle2.wafflerestaurant.Entities;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "producto")
+public class Producto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Column(nullable = false)
+    private String nombre;
+    @Column(nullable = false)
+    private double precio;
+    @Column(nullable = true)
+    private String descripcion;
+
+
+}

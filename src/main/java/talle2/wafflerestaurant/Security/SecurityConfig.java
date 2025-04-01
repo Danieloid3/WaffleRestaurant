@@ -45,7 +45,7 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/login")
                         .permitAll())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/signup", "/signup/guardar", "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/signup", "/signup/guardar", "/css/**", "/js/**", "/images/**", "/menu").permitAll()
                         .requestMatchers("/admin/**", "/productos/crear", "/productos/editar/**", "/productos/eliminar/**").hasRole("ADMIN")
                         .requestMatchers("/pedidos/**").hasRole("CLIENT")
                         .anyRequest().authenticated())
