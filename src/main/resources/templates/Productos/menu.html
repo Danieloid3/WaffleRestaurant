@@ -24,7 +24,8 @@
                             <span class="price" th:text="'$' + ${producto.precio}"></span>
 
                             <!-- Botón para CLIENTES (agregar al carrito) -->
-                            <form th:if="${#authorization.expression('hasRole(''CLIENT'')')}" th:action="@{/carrito/agregar/{id}(id=${producto.id}, origen='menu')}" method="post">
+                            <form th:if="${#authorization.expression('hasRole(''CLIENT'')')}" th:action="@{/carrito/agregar/{id}(id=${producto.id})}" method="post">
+                                <input type="hidden" name="origen" value="menu">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-cart-plus me-1"></i> Agregar
                                 </button>
@@ -55,6 +56,7 @@
                 <i class="fas fa-plus-circle me-1"></i> Crear Producto
             </a>
         </div>
+    </div>
 </div>
 
 <footer th:replace="~{layout :: footer}"></footer>

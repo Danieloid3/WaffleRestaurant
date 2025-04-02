@@ -46,7 +46,7 @@ public class CarritoController {
             return "redirect:/carrito";
         }
 
-        return "redirect:/menu";
+        return "redirect:/productos/menu";
     }
 
     @PostMapping("/restar/{id}")
