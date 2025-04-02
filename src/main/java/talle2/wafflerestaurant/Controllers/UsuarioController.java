@@ -53,4 +53,9 @@ public class UsuarioController {
     public String accesoDenegado() {
         return "error/acceso-denegado";
     }
+
+    @GetMapping("/")
+    public String index() {
+        return "landing";
+    }
 }

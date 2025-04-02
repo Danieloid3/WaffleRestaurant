@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout :: head"></head>
+<body class="inicio-body">
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark" th:fragment="navbar">
+    <div class="container">
+        <a class="navbar-brand" href="">
+            <img src="/images/icono.png" alt="Waffle Restaurant" height="40" class="me-2">
+            Waffle Restaurant
+
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link" href="/admin/productos">
+                        <i class="fas fa-utensils me-1"></i> Gestionar Productos
+                    </a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link" href="/admin/inventario">
+                        <i class="fas fa-box me-1"></i> Gestionar Inventario
+                    </a>
+                </li>
+                <li >
+                    <a class="nav-link" href="/login">
+                        <i class="fas fa-book-open me-1"></i> Ver Menú
+                    </a>
+                </li>
+                <li >
+                    <a class="nav-link" href="/login">
+                        <i class="fas fa-user me-1"></i> Iniciar Sesión
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user me-1"></i> <span sec:authentication="name"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li>
+                        <span class="dropdown-item-text">Rol:
+                            <span th:with="auth=${#authentication.principal.authorities[0].authority}">
+                                <span th:switch="${auth}">
+                                    <span th:case="'ROLE_CLIENT'">Cliente</span>
+                                    <span th:case="'ROLE_ADMIN'">Administrador</span>
+                                    <span th:case="*" th:text="${auth}"></span>
+                                </span>
+                            </span>
+                        </span>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt me-1"></i> Cerrar Sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Banner principal -->
+<div class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-6">
+                <div class="banner-content">
+                    <h1>¡Bienvenido a Waffle Restaurant!</h1>
+                    <p class="lead">Deliciosos waffles artesanales con los mejores ingredientes</p>
+                    <a href="/login" class="btn btn-primary btn-lg">Ver nuestro menú</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sección de especiales -->
+<section class="container my-5 specials-section">
+    <h2 class="text-center mb-4">Nuestros Especiales del Día</h2>
+    <div class="row g-4">
+        <!-- Especial 1 -->
+        <div class="col-md-4">
+            <div class="card special-card h-100">
+                <img src="/images/waffle1.jpg" class="card-img-top" alt="Waffle Especial">
+                <div class="card-body">
+                    <h5 class="card-title">Waffle Frutal</h5>
+                    <p class="card-text">Delicioso waffle cubierto con frutas frescas de temporada y miel de maple.</p>
+                    <span class="price">$8.500</span>
+                </div>
+            </div>
+        </div>
+        <!-- Especial 2 -->
+        <div class="col-md-4">
+            <div class="card special-card h-100">
+                <img src="/images/waffle2.jpg" class="card-img-top" alt="Waffle de Chocolate">
+                <div class="card-body">
+                    <h5 class="card-title">Waffle de Chocolate</h5>
+                    <p class="card-text">Exquisito waffle con salsa de chocolate belga y crema batida.</p>
+                    <span class="price">$7.900</span>
+                </div>
+            </div>
+        </div>
+        <!-- Especial 3 -->
+        <div class="col-md-4">
+            <div class="card special-card h-100">
+                <img src="/images/waffle3.jpg" class="card-img-top" alt="Waffle Salado">
+                <div class="card-body">
+                    <h5 class="card-title">Waffle Salado</h5>
+                    <p class="card-text">Waffle salado con huevo, queso y tocineta. ¡Una delicia a cualquier hora!</p>
+                    <span class="price">$10.500</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer th:replace="layout :: footer"></footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
