@@ -1,0 +1,125 @@
+/* Estilos específicos para adminProductos.html */
+.admin-producto-form {
+    background-color: rgba(110, 61, 35, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border: 2px solid #F19C29;
+    padding: 2rem;
+    margin-bottom: 30px;
+}
+
+.admin-producto-form .card-header {
+    background-color: #F19C29;
+    color: #6E3D23;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 3px solid #C7781A;
+    padding: 15px;
+    margin: -2rem -2rem 1.5rem -2rem;
+}
+
+.admin-producto-form h3 {
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.admin-producto-form .form-label {
+    color: #EED09D;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.admin-producto-form .form-control {
+    background-color: rgba(238, 208, 157, 0.15);
+    border: 1px solid #907454;
+    color: #EED09D;
+    transition: all 0.3s ease;
+    padding: 10px 15px;
+}
+
+.admin-producto-form .form-control:focus {
+    background-color: rgba(238, 208, 157, 0.25);
+    border-color: #F19C29;
+    box-shadow: 0 0 0 0.25rem rgba(241, 156, 41, 0.25);
+    color: #fff;
+}
+
+.admin-producto-form .input-group-text {
+    background-color: #907454;
+    border-color: #907454;
+    color: #EED09D;
+}
+
+.admin-producto-form .form-text {
+    color: #EED09D;
+    opacity: 0.8;
+    font-size: 0.85rem;
+}
+
+.admin-producto-form .btn-primary {
+    background-color: #F19C29;
+    border-color: #F19C29;
+    color: #6E3D23;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.admin-producto-form .btn-primary:hover {
+    background-color: #C7781A;
+    border-color: #C7781A;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.admin-producto-form .btn-outline-secondary {
+    border-color: #EED09D;
+    color: #EED09D;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.admin-producto-form .btn-outline-secondary:hover {
+    background-color: #EED09D;
+    color: #6E3D23;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.admin-producto-form .invalid-feedback {
+    color: #f8c78d;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.admin-producto-form .alert {
+    background-color: rgba(241, 156, 41, 0.2);
+    border-color: #F19C29;
+    color: #EED09D;
+}
+
+.admin-producto-form .alert-success {
+    background-color: rgba(40, 167, 69, 0.2);
+    border-color: #28a745;
+}
+
+.admin-producto-form .close {
+    color: #EED09D;
+}
+
+/* Animación para el formulario */
+.admin-producto-form {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

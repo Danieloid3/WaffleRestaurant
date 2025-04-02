@@ -30,34 +30,51 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/menu">Menú</a>
-                </li>
-
-                <!-- Enlaces para administradores -->
-                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                    <a class="nav-link" href="/pagos/admin">Gestión de Pagos</a>
-                </li>
-                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                    <a class="nav-link" href="/pedidos/admin/pedidos">Gestión de Pedidos</a>
-                </li>
-                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                    <a class="nav-link" href="/productos/admin">Gestión de Productos</a>
-                </li>
-
-                <!-- Enlaces para clientes -->
-                <li class="nav-item" sec:authorize="hasRole('CLIENT')">
-                    <a class="nav-link" href="/pedidos/mis-pedidos">Mis Pedidos</a>
-                </li>
-                <li class="nav-item" sec:authorize="hasRole('CLIENT')">
-                    <a class="nav-link" href="/carrito">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge bg-primary" th:if="${session.carrito != null && !session.carrito.items.isEmpty()}"
-                              th:text="${session.carrito.items.size()}"></span>
+                <!-- Menú - visible para todos excepto administradores -->
+                <li class="nav-item" sec:authorize="!hasRole('ADMIN')">
+                    <a class="nav-link" href="/productos/menu">
+                        <i class="fas fa-book-open me-1"></i> Ver Menú
                     </a>
                 </li>
 
-                <!-- Enlaces para todos los usuarios autenticados -->
+                <!-- Carrito - visible solo para clientes autenticados -->
+                <li class="nav-item" sec:authorize="hasRole('CLIENT')">
+                    <a class="nav-link" href="/carrito">
+                        <i class="fas fa-shopping-cart me-1"></i> Carrito
+                    </a>
+                </li>
+
+                <!-- Enlaces para administradores -->
+                <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-cogs me-1"></i> Administración
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/productos/menu">
+                            <i class="fas fa-utensils me-1"></i> Gestionar Productos
+                        </a></li>
+                        <li><a class="dropdown-item" href="/pagos/admin">
+                            <i class="fas fa-credit-card me-1"></i> Gestión de Pagos
+                        </a></li>
+                        <li><a class="dropdown-item" href="/pedidos/admin/pedidos">
+                            <i class="fas fa-clipboard-list me-1"></i> Gestión de Pedidos
+                        </a></li>
+                    </ul>
+                </li>
+
+                <!-- Opciones para usuarios no autenticados -->
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link" href="/login">
+                        <i class="fas fa-sign-in-alt me-1"></i> Iniciar Sesión
+                    </a>
+                </li>
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link" href="/signup">
+                        <i class="fas fa-user-plus me-1"></i> Registrarse
+                    </a>
+                </li>
+
+                <!-- Enlaces para usuarios autenticados -->
                 <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                         <i class="fas fa-user-circle me-1"></i>
@@ -65,6 +82,8 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="/perfil">Mi Perfil</a></li>
+                        <!-- Mis pedidos solo visible para clientes -->
+                        <li sec:authorize="hasRole('CLIENT')"><a class="dropdown-item" href="/pedidos/mis-pedidos">Mis Pedidos</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <form th:action="@{/logout}" method="post" class="dropdown-item p-0">
