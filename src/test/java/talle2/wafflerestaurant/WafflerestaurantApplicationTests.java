@@ -34,11 +34,11 @@ class WafflerestaurantApplicationTests {
     void testCreateProducto() {
         Faker faker = new Faker();
         Producto producto = new Producto();
-        producto.setNombre("Waffle salado");
-        producto.setPrecio(10500);
-        producto.setDescripcion("Waffle salado con huevo, queso y tocineta. ¡Una delicia a cualquier hora!");
+        producto.setNombre("Waffle frutal");
+        producto.setPrecio(9000);
+        producto.setDescripcion("Delicioso waffle cubierto con frutas frescas de temporada y miel de maple");
         //url de imagen de alimentos
-        producto.setImagen("waffleSalado.png");
+        producto.setImagen("waffleFrutal.png");
 
 
 

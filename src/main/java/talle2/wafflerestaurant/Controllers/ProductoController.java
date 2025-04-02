@@ -65,7 +65,7 @@ public class ProductoController {
             ra.addFlashAttribute("message", e.getMessage());
         }
 
-        return "redirect:/productos";
+        return "redirect:/menu";
     }
 
     @GetMapping ("/admin/crear")
