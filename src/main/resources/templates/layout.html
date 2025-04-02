@@ -81,7 +81,6 @@
                         <span sec:authentication="name">Usuario</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="/perfil">Mi Perfil</a></li>
                         <!-- Mis pedidos solo visible para clientes -->
                         <li sec:authorize="hasRole('CLIENT')"><a class="dropdown-item" href="/pedidos/mis-pedidos">Mis Pedidos</a></li>
                         <li><hr class="dropdown-divider"></li>
