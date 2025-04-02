@@ -105,4 +105,15 @@ public class PedidoController {
             return "redirect:/pedidos/admin/pedidos";
         }
     }
+
+    @PostMapping("/admin/cambiar-estado/{id}")
+    public String cambiarEstadoPedido(@PathVariable int id, @RequestParam boolean estado, RedirectAttributes ra) {
+        try {
+            pedidoService.cambiarEstadoPedido(id, estado);
+            ra.addFlashAttribute("message", "Estado del pedido actualizado correctamente");
+        } catch (Exception e) {
+            ra.addFlashAttribute("error", "Error al actualizar el estado del pedido: " + e.getMessage());
+        }
+        return "redirect:/pedidos/admin/pedidos";
+    }
 }

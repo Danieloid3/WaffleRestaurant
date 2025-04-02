@@ -89,18 +89,20 @@ public class PagoController {
     public String rechazarPago(@PathVariable int id, RedirectAttributes ra) {
         try {
             Pago pago = pagoService.obtenerPago(id);
+            Factura factura = pago.getFactura();
 
-            // Eliminar el pago (o marcarlo como rechazado)
+            Pedido pedido = factura.getPedido();
+
             pagoService.eliminarPago(id);
 
-            // También se puede marcar como rechazado si prefieres mantener el registro
-            //pago.setEstadoPago(false);
-            // pagoService.guardarPago(pago);
+            facturaService.cambiarEstadoFactura(factura.getId_factura(), false);
 
-            ra.addFlashAttribute("message", "Pago rechazado correctamente");
+            ra.addFlashAttribute("message", "Pago rechazado correctamente. Se ha notificado al cliente.");
         } catch (Exception e) {
             ra.addFlashAttribute("error", "Error al rechazar el pago: " + e.getMessage());
         }
         return "redirect:/pagos/admin";
     }
+
+
 }
