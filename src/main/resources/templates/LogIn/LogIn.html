@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="/css/styleLogin.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Añadir Bootstrap CSS para el modal -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <section class="login-section">
     <form method="post" action="/login/process">
+        <h2>Iniciar Sesión</h2>
         <div class="inputbox">
-            <ion-icon name="person-outline"></ion-icon>
+            <ion-icon name="mail-outline"></ion-icon>
             <input type="text" name="email" required>
             <label>Correo</label>
         </div>
@@ -21,8 +24,11 @@
             <input type="password" name="password" required>
             <label>Contraseña</label>
         </div>
+        <div class="forget">
+            <a href="#" id="olvidoPassword">¿Olvidaste tu contraseña?</a>
+        </div>
         <button type="submit">Iniciar Sesión</button>
-        <div>
+        <div class="register">
             <p>¿No tienes una cuenta? <a href="/signup">Registrarse</a></p>
         </div>
     </form>
@@ -31,17 +37,40 @@
     </div>
 </section>
 
+<!-- Modal para mensaje de contraseña olvidada -->
+<div class="modal fade" id="recuperarPasswordModal" tabindex="-1" aria-labelledby="recuperarPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: rgba(110, 61, 35, 0.95); border: 2px solid #eed09d;">
+            <div class="modal-header" style="border-bottom: 1px solid #f19c29;">
+                <h5 class="modal-title" id="recuperarPasswordModalLabel" style="color: #eed09d;">Recuperación de Contraseña</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #f19c29;"></button>
+            </div>
+            <div class="modal-body" style="color: #eed09d;">
+                <p>Para recuperar tu contraseña, por favor contacta con nuestro equipo de soporte:</p>
+                <p style="text-align: center; font-weight: bold; margin-top: 15px; color: #f19c29;">
+                    <ion-icon name="mail" style="font-size: 1.5em; vertical-align: middle; margin-right: 8px;"></ion-icon>
+                    soporte@wafflerestaurant.com
+                </p>
+                <p style="margin-top: 15px;">Un miembro de nuestro equipo te ayudará a restablecer tu acceso lo antes posible.</p>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid #f19c29;">
+                <button type="button" class="btn" style="background-color: #f19c29; color: #6e3d23; font-weight: 600;" data-bs-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Añadir Bootstrap JS y código para el modal -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('error')) {
-            const errorDiv = document.createElement('div');
-            errorDiv.style.color = 'red';
-            errorDiv.style.textAlign = 'center';
-            errorDiv.style.marginTop = '15px';
-            errorDiv.textContent = 'Usuario o contraseña incorrectos';
-            document.querySelector('section').appendChild(errorDiv);
-        }
+        const olvidoPasswordLink = document.getElementById('olvidoPassword');
+        const modal = new bootstrap.Modal(document.getElementById('recuperarPasswordModal'));
+
+        olvidoPasswordLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.show();
+        });
     });
 </script>
 </body>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <title>Carrito de Compras</title>
+</head>
+<body class="inicio-body">
+<nav th:replace="~{layout :: navbar}"></nav>
+
+<div class="content-wrapper">
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Mi Carrito</h2>
+
+        <!-- Si el carrito está vacío -->
+        <div th:if="${#lists.isEmpty(carrito.items)}" class="empty-cart-message">
+            <i class="fas fa-shopping-cart"></i>
+            <h3>Tu carrito está vacío</h3>
+            <p>Añade algunos productos deliciosos a tu carrito</p>
+            <a href="/menu" class="btn btn-waffle mt-3">Ver Menú</a>
+        </div>
+
+        <!-- Si hay productos en el carrito -->
+        <div th:unless="${#lists.isEmpty(carrito.items)}">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="cart-table">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Total</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item : ${carrito.items}">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img th:src="@{/images/{img}(img=${item.producto.imagen})}"
+                                             alt="Producto" class="me-3"
+                                             style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                                        <div>
+                                            <h6 class="mb-0" th:text="${item.producto.nombre}"></h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center" th:text="'$' + ${item.producto.precio}"></td>
+                                <td class="text-center">
+                                    <div class="quantity-control">
+                                        <form th:action="@{/carrito/restar/{id}(id=${item.producto.id})}" method="post" class="d-inline">
+                                            <button type="submit" class="btn btn-quantity">-</button>
+                                        </form>
+                                        <span th:text="${item.cantidad}" class="mx-2"></span>
+                                        <form th:action="@{/carrito/agregar/{id}(id=${item.producto.id}, origen='carrito')}" method="post" class="d-inline">
+                                            <button type="submit" class="btn btn-quantity">+</button>
+                                        </form>
+                                    </div>
+                                </td>
+                                <td class="text-center" th:text="'$' + ${item.cantidad * item.producto.precio}"></td>
+                                <td class="text-center">
+                                    <form th:action="@{/carrito/eliminar/{id}(id=${item.producto.id})}" method="post">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="cart-summary">
+                        <h3>Resumen del Pedido</h3>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Subtotal:</span>
+                            <span class="fw-bold" th:text="'$' + ${carrito.total}"></span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-4">
+                            <span>Total:</span>
+                            <span class="cart-total" th:text="'$' + ${carrito.total}"></span>
+                        </div>
+                        <form th:action="@{/pedidos/crear}" method="post">
+                            <button type="submit" class="btn btn-checkout w-100">Realizar Pedido</button>
+                        </form>
+                        <a href="/menu" class="btn btn-continue w-100 mt-3">Seguir Comprando</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

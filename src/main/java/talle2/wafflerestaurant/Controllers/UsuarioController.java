@@ -31,16 +31,17 @@ public class UsuarioController {
     }
 
     @PostMapping("/signup/guardar")
-    public String guardar(Usuario usuario, Model model) {
+    public String guardar(Cliente cliente, Model model) {
         // Comprobar si el usuario ya existe
-        if (service.existsByEmail(usuario.getEmail())) {
+        if (service.existsByEmail(cliente.getEmail())) {
             model.addAttribute("error", "El correo electrónico ya está registrado");
-            model.addAttribute("cliente", new Cliente());
+            // No creamos un nuevo objeto Cliente, usamos el mismo que recibimos
+            model.addAttribute("cliente", cliente);
             model.addAttribute("title", "Crear cliente");
-            return "SignUp/SignUp"; // Volver al formulario
+            return "SignUp/SignUp"; // Volver al formulario con los datos ingresados
         }
 
-        service.save(usuario);
+        service.save(cliente);
         return "redirect:/login";
     }
 

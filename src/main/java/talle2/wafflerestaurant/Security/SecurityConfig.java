@@ -45,9 +45,21 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/login")
                         .permitAll())
                 .authorizeHttpRequests(auth -> auth
+                        // Recursos públicos
                         .requestMatchers("/signup", "/signup/guardar", "/css/**", "/js/**", "/images/**", "/menu", "/").permitAll()
-                        .requestMatchers("/admin/**", "/productos/crear", "/productos/editar/**", "/productos/eliminar/**").hasRole("ADMIN")
-                        .requestMatchers("/pedidos/**").hasRole("CLIENT")
+
+                        // Rutas para ADMIN
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/productos/crear", "/productos/editar/**", "/productos/eliminar/**").hasRole("ADMIN")
+                        .requestMatchers("/pagos/admin", "/pagos/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/pedidos/admin/**").hasRole("ADMIN")
+
+                        // Rutas para CLIENTE
+                        .requestMatchers("/pedidos/**").hasAnyRole("CLIENT", "ADMIN")
+                        .requestMatchers("/carrito/**").hasAnyRole("CLIENT", "ADMIN")
+                        .requestMatchers("/pagos/realizar/**", "/pagos/procesar").hasAnyRole("CLIENT", "ADMIN")
+
+                        // Resto de rutas requieren autenticación
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex
                         .accessDeniedPage("/acceso-denegado"))

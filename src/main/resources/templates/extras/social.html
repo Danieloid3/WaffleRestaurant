@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <title>Redes Sociales - Waffle Restaurant</title>
+    <link rel="stylesheet" href="/css/social.css">
+</head>
+<body class="inicio-body">
+<!-- Barra de navegación -->
+<nav th:replace="~{layout :: navbar}"></nav>
+
+<div class="content-wrapper">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center social-card">
+                <div class="social-card-content">
+                    <img src="/images/icono.png" alt="Waffle Restaurant" height="120" class="mb-4">
+                    <h2 class="social-title">¡Gracias por tu interés!</h2>
+                    <h4 class="social-subtitle">Estamos preparando algo delicioso</h4>
+
+                    <p class="social-text">
+                        Muy pronto tendremos todo listo en nuestras redes sociales para que puedas
+                        compartir con nosotros tus momentos más especiales.
+                    </p>
+
+                    <p class="social-message">
+                        Mientras tanto, te invitamos a visitar nuestro restaurante y disfrutar de
+                        nuestros deliciosos waffles hechos con los mejores ingredientes.
+                    </p>
+
+                    <div class="social-buttons">
+                        <a href="/inicio" class="btn btn-primary social-btn">
+                            <i class="fas fa-home me-1"></i> Volver al inicio
+                        </a>
+                        <a href="/menu" class="btn btn-outline social-btn-outline">
+                            <i class="fas fa-book-open me-1"></i> Ver nuestro menú
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

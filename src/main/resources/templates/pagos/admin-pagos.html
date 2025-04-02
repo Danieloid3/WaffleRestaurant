@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout :: head}">
+        <title>Administración de Pagos</title>
+    </head>
+    <body class="site-body">
+    <nav th:replace="~{layout :: navbar}"></nav>
+
+    <div class="content-wrapper">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <i class="fas fa-credit-card mb-3 page-header-icon"></i>
+                <h2 class="section-title">Administración de Pagos</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div th:if="${message}" class="alert alert-success shadow-sm" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
+                <span th:text="${message}"></span>
+            </div>
+
+            <div th:if="${error}" class="alert alert-danger shadow-sm" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                <span th:text="${error}"></span>
+            </div>
+
+            <!-- Si no hay pagos -->
+            <div th:if="${#lists.isEmpty(pagos)}" class="text-center py-5 empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <h4 class="text-muted">No hay pagos pendientes</h4>
+                <p class="text-muted">Cuando los clientes realicen pagos, aparecerán aquí.</p>
+            </div>
+
+            <!-- Si hay pagos -->
+            <div th:unless="${#lists.isEmpty(pagos)}" class="card pagos-card">
+                <div class="card-header py-3">
+                    <h5 class="mb-0"><i class="fas fa-list me-2"></i>Listado de Pagos</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                            <tr>
+                                <th class="px-3">ID</th>
+                                <th>Pedido</th>
+                                <th>Cliente</th>
+                                <th>Tipo de Pago</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="pago : ${pagos}">
+                                <td class="px-3">
+                                    <span class="payment-id" th:text="${pago.id_pago}"></span>
+                                </td>
+                                <td>
+                                    <a th:href="@{/pedidos/admin/detalle/{id}(id=${pago.factura.pedido.id_pedido})}"
+                                       class="fw-medium text-decoration-none">
+                                        #<span th:text="${pago.factura.pedido.id_pedido}"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <span th:text="${pago.factura.pedido.usuario.nombre}"></span>
+                                </td>
+                                <td>
+                                    <span class="badge rounded-pill badge-payment-type"
+                                          th:classappend="${pago.tipoDePago == 'Tarjeta'} ? 'bg-primary' : 'bg-secondary'">
+                                        <i class="fas" th:classappend="${pago.tipoDePago == 'Tarjeta'} ? 'fa-credit-card' : 'fa-money-bill-wave'"></i>
+                                        <span th:text="${pago.tipoDePago}"></span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="fw-bold" th:text="'$' + ${pago.monto}"></span>
+                                </td>
+                                <td>
+                                    <span th:if="${pago.factura.estado_factura}" class="badge bg-success">
+                                        <i class="fas fa-check-circle me-1"></i> Pagada
+                                    </span>
+                                    <span th:unless="${pago.factura.estado_factura}" class="badge bg-warning text-dark">
+                                        <i class="fas fa-clock me-1"></i> Pendiente
+                                    </span>
+                                </td>
+                                <td>
+                                    <div th:if="${!pago.factura.estado_factura}" class="d-flex justify-content-center gap-2 pagos-actions">
+                                        <form th:action="@{/pagos/admin/aprobar/{id}(id=${pago.id_pago})}" method="post">
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i class="fas fa-check me-1"></i> Aprobar
+                                            </button>
+                                        </form>
+                                        <form th:action="@{/pagos/admin/rechazar/{id}(id=${pago.id_pago})}" method="post">
+                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('¿Estás seguro de rechazar este pago?');">
+                                                <i class="fas fa-times me-1"></i> Rechazar
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div th:if="${pago.factura.estado_factura}" class="text-center">
+                                        <span class="badge bg-info">
+                                            <i class="fas fa-check-double me-1"></i> Aprobado
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{layout :: footer}"></footer>
+
+    <!-- Enlace al CSS personalizado -->
+    <link rel="stylesheet" href="/css/StyleAdminPagos.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>

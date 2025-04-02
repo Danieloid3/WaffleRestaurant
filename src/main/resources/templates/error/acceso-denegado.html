@@ -1,31 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Acceso Denegado</title>
+    <title>Acceso Reservado - Waffle Restaurant</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        body {
+            background-color: #EED09D;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
         .error-container {
+            background-color: #6E3D23;
+            color: #EED09D;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             text-align: center;
-            padding: 50px 20px;
+            padding: 50px 30px;
+            max-width: 600px;
+            width: 90%;
         }
-        .error-code {
-            font-size: 72px;
-            color: #d9534f;
+
+        .error-icon {
+            font-size: 80px;
             margin-bottom: 20px;
+            color: #F19C29;
         }
+
+        .error-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
         .error-message {
-            font-size: 24px;
+            font-size: 18px;
+            line-height: 1.6;
             margin-bottom: 30px;
+        }
+
+        .home-button {
+            background-color: #F19C29;
+            color: #6E3D23;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(241, 156, 41, 0.4);
+        }
+
+        .waffle-decoration {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+            width: 300px;
+            height: 300px;
         }
     </style>
 </head>
 <body>
+<div class="waffle-decoration" style="top: 10%; left: 5%; transform: rotate(-15deg);">
+    <i class="fas fa-cookie" style="font-size: 300px;"></i>
+</div>
+
 <div class="error-container">
-    <div class="error-code">403</div>
-    <div class="error-message">Acceso Denegado</div>
-    <p>No tienes permisos para acceder a esta página.</p>
-    <a href="/inicio">Volver al inicio</a>
+    <div class="error-icon">
+        <i class="fas fa-utensils"></i>
+    </div>
+    <div class="error-title">¡Uy, disculpa!</div>
+    <div class="error-message">
+        Por aquí queda nuestra cocina secreta donde preparamos la magia de nuestros waffles.
+        Esta área está reservada solo para nuestros chefs maestros.
+        <br><br>
+        ¿Qué tal si mejor disfrutas de nuestros deliciosos waffles en el área de clientes?
+    </div>
+    <a href="/inicio" class="home-button">
+        <i class="fas fa-home" style="margin-right: 8px;"></i> Volver al menú principal
+    </a>
+</div>
+
+<div class="waffle-decoration" style="bottom: 10%; right: 5%; transform: rotate(20deg);">
+    <i class="fas fa-cookie" style="font-size: 300px;"></i>
 </div>
 </body>
 </html>

@@ -1,68 +1,270 @@
 /* styleLogin.css - Estilos para página de login con la nueva paleta */
-.login-section {
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+.login-section,
+.signup-section {
+    position: relative;
+    width: 400px;
     background-color: rgba(110, 61, 35, 0.85) !important; /* #6E3D23 con transparencia */
     border: 2px solid #eed09d;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    margin: 0 auto; /* Centrado horizontal */
+    z-index: 10;
+}
+
+/* Contenido centrado dentro del formulario */
+.login-section form,
+.signup-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Título centrado */
+.login-section h2,
+.signup-section h2 {
+    color: #eed09d !important;
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 30px;
 }
 
 /* Mejorar visibilidad de textos */
 .login-section label,
-.login-section p {
+.login-section p,
+.signup-section label,
+.signup-section p {
     color: #eed09d !important;
 }
 
-.login-section a {
+.login-section a,
+.signup-section a {
     color: #f19c29 !important;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
-.login-section a:hover {
+.login-section a:hover,
+.signup-section a:hover {
     color: #c7781a !important;
     text-decoration: underline;
 }
 
 /* Color del texto en los inputs */
-.login-section .inputbox input {
+.login-section .inputbox input,
+.signup-section .inputbox input {
     color: #eed09d !important;
     border-bottom: 2px solid #f19c29;
 }
 
-.login-section .inputbox input:focus {
+.login-section .inputbox input:focus,
+.signup-section .inputbox input:focus {
     border-bottom: 2px solid #eed09d;
 }
 
 /* Efecto en inputs */
 .login-section .inputbox input:focus ~ label,
-.login-section .inputbox input:valid ~ label {
+.login-section .inputbox input:valid ~ label,
+.signup-section .inputbox input:focus ~ label,
+.signup-section .inputbox input:valid ~ label {
     color: #f19c29 !important;
     font-weight: 600;
 }
 
 /* Iconos */
-.login-section ion-icon {
+.login-section ion-icon,
+.signup-section ion-icon {
     color: #f19c29;
+    font-size: 1.2em;
 }
 
 /* Botón de inicio de sesión */
-.login-section button {
+.login-section button,
+.signup-section button {
     background-color: #f19c29;
     color: #6e3d23;
     font-weight: 600;
     transition: all 0.3s ease;
+    width: 100%;
+    height: 45px;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 20px;
 }
 
 /* Efecto hover en botón */
-.login-section button:hover {
+.login-section button:hover,
+.signup-section button:hover {
     background-color: #c7781a;
     color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Mensaje de error */
-.login-section div[style*="color: red"] {
+.login-section div[style*="color: red"],
+.signup-section div[style*="color: red"] {
     color: #f19c29 !important;
     background-color: rgba(110, 61, 35, 0.5);
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #c7781a;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .login-section,
+    .signup-section {
+        width: 90%;
+        padding: 30px 20px;
+    }
+}
+
+/* Posicionamiento de íconos en los campos de entrada */
+.inputbox {
+    position: relative;
+    margin: 30px 0;
+    width: 100%;
+}
+
+.inputbox ion-icon {
+    position: absolute;
+    right: 8px;
+    top: 20px;
+    color: #f19c29;
+    font-size: 1.2em;
+    z-index: 2;
+}
+
+/* Añadir padding al input para evitar superposición con el ícono */
+.inputbox input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0 35px 0 5px;
+    color: #eed09d !important;
+}
+
+/* Añadir espacio para el ícono */
+.inputbox label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #eed09d;
+    font-size: 1em;
+    pointer-events: none;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+/* Estilos para el modal de recuperación de contraseña */
+.modal-content {
+    background-color: rgba(110, 61, 35, 0.95) !important;
+    border: 2px solid #eed09d !important;
+    border-radius: 15px !important;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+.modal-header {
+    border-bottom: 1px solid #f19c29 !important;
+    padding: 15px 20px !important;
+}
+
+.modal-title {
+    color: #eed09d !important;
+    font-weight: 600 !important;
+}
+
+.btn-close {
+    background-color: #f19c29 !important;
+    opacity: 0.8 !important;
+}
+
+.btn-close:hover {
+    opacity: 1 !important;
+}
+
+.modal-body {
+    color: #eed09d !important;
+    padding: 20px !important;
+}
+
+.modal-footer {
+    border-top: 1px solid #f19c29 !important;
+    padding: 15px 20px !important;
+}
+
+.modal-footer .btn {
+    background-color: #f19c29 !important;
+    color: #6e3d23 !important;
+    font-weight: 600 !important;
+    border-radius: 40px !important;
+    padding: 8px 20px !important;
+    transition: all 0.3s ease !important;
+}
+
+.modal-footer .btn:hover {
+    background-color: #c7781a !important;
+    color: #fff !important;
+    transform: translateY(-3px) !important;
+}
+
+/* Estilo para mensajes de error de campos individuales */
+.field-error {
+    color: #f19c29 !important;
+    font-size: 0.8em;
+    margin-top: 5px;
+    background-color: rgba(110, 61, 35, 0.4);
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(241, 156, 41, 0.5);
+    width: 100%;
+    text-align: center;
+}
+
+/* Clase para resaltar campos con error */
+.inputbox.error input {
+    border-bottom: 2px solid #f19c29 !important;
+}
+
+.inputbox.error ion-icon {
+    color: #f19c29 !important;
+}
+
+/* Mensaje de error global personalizado */
+.custom-error-message {
+    color: #f19c29 !important;
+    background-color: rgba(110, 61, 35, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #c7781a;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }

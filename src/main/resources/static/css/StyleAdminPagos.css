@@ -1,0 +1,163 @@
+/* src/main/resources/static/css/admin-pagos.css */
+
+/* Estilos para la página de administración de pagos utilizando la paleta oficial */
+
+/* Estilos de la cabecera */
+.page-header-icon {
+    font-size: 48px;
+    color: #F19C29; /* Naranja principal */
+}
+
+.section-title {
+    color: #6E3D23; /* Marrón oscuro */
+    font-weight: 600;
+}
+
+.title-underline {
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #F19C29; /* Naranja principal */
+    margin: 10px auto 0;
+}
+
+/* Estado vacío */
+.empty-state {
+    background-color: #FDF6EB; /* Versión clara del beige */
+    border-radius: 10px;
+    padding: 40px 20px;
+    box-shadow: 0 0 15px rgba(110, 61, 35, 0.05);
+}
+
+.empty-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    background-color: #EED09D; /* Beige claro */
+    border-radius: 50%;
+}
+
+.empty-icon i {
+    font-size: 64px;
+    color: #907454; /* Marrón medio */
+}
+
+/* Tarjeta de pagos */
+.pagos-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(110, 61, 35, 0.1);
+    border: none;
+}
+
+.pagos-card .card-header {
+    background-color: #EED09D; /* Beige claro */
+    border-bottom: 1px solid rgba(110, 61, 35, 0.1);
+    color: #6E3D23; /* Marrón oscuro */
+    font-weight: 500;
+}
+
+.pagos-card .card-header i {
+    color: #C7781A; /* Naranja oscuro */
+}
+
+/* Tabla de pagos */
+.table thead th {
+    background-color: #6E3D23; /* Marrón oscuro */
+    color: white;
+    font-weight: 600;
+    border: none;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    border-color: rgba(110, 61, 35, 0.1);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(238, 208, 157, 0.2); /* Beige claro con transparencia */
+}
+
+/* ID de pago */
+.payment-id {
+    font-family: monospace;
+    background-color: #EED09D; /* Beige claro */
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    color: #6E3D23; /* Marrón oscuro */
+}
+
+/* Badges y etiquetas */
+.badge.badge-payment-type {
+    padding: 0.5rem 0.75rem;
+}
+
+.badge.bg-primary {
+    background-color: #F19C29 !important; /* Naranja principal */
+}
+
+.badge.bg-secondary {
+    background-color: #907454 !important; /* Marrón medio */
+}
+
+.badge.bg-success {
+    background-color: #5A8A60 !important; /* Verde personalizado */
+}
+
+.badge.bg-warning {
+    background-color: #F1BB29 !important; /* Amarillo personalizado */
+    color: #6E3D23 !important;
+}
+
+.badge.bg-info {
+    background-color: #6E3D23 !important; /* Marrón oscuro */
+    color: white !important;
+}
+
+/* Botones de acción */
+.pagos-actions .btn-success {
+    background-color: #5A8A60; /* Verde personalizado */
+    border-color: #5A8A60;
+}
+
+.pagos-actions .btn-danger {
+    background-color: #C05850; /* Rojo personalizado */
+    border-color: #C05850;
+}
+
+.pagos-actions .btn-success:hover {
+    background-color: #4A7A50;
+    border-color: #4A7A50;
+}
+
+.pagos-actions .btn-danger:hover {
+    background-color: #B04840;
+    border-color: #B04840;
+}
+
+/* Enlaces */
+a.text-decoration-none {
+    color: #C7781A; /* Naranja oscuro */
+    transition: color 0.3s;
+}
+
+a.text-decoration-none:hover {
+    color: #F19C29; /* Naranja principal */
+    text-decoration: underline !important;
+}
+
+/* Alertas */
+.alert-success {
+    background-color: rgba(90, 138, 96, 0.1);
+    border-color: rgba(90, 138, 96, 0.2);
+    color: #5A8A60;
+}
+
+.alert-danger {
+    background-color: rgba(192, 88, 80, 0.1);
+    border-color: rgba(192, 88, 80, 0.2);
+    color: #C05850;
+}

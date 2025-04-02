@@ -27,17 +27,20 @@ public class Pedido implements Serializable {
 
     private float total_pedido;
 
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
     //Relacion 1:1 con Fctura
     @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
     //cascade = CascadeType.ALL: Permite que si se elimina un Pedido, su Factura también se elimine automáticamente.
     private Factura factura;
 
-    // Relación Muchos a Muchos con Producto
     @ManyToMany
     @JoinTable(
             name = "pedido_producto",
             joinColumns = @JoinColumn(name = "id_pedido"),
-            inverseJoinColumns = @JoinColumn(name = "id_producto")
+            inverseJoinColumns = @JoinColumn(name = "id_producto") // Cambia de "id" a "id_producto"
     )
     private List<Producto> productos;
 

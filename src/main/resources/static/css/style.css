@@ -8,10 +8,10 @@
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Cambiado para que el contenido empiece desde arriba */
     background-image: url(../images/background.jpg);
     background-color: #000;
     background-repeat: no-repeat;
@@ -184,4 +184,63 @@ body.inicio-body section {
     .inputbox {
         width: 100%;
     }
+}
+
+/* Reemplaza las reglas actuales del sticky footer */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* El contenido principal debe expandirse para empujar el footer hacia abajo */
+.container,
+.content-wrapper,
+main {
+    flex: 1 0 auto;
+}
+
+/* Asegura que el footer se quede abajo */
+footer {
+    flex-shrink: 0;
+    margin-top: auto;
+    width: 100%;
+    position: relative;
+}
+
+/* Compatible con las clases de cuerpo existentes */
+body.inicio-body,
+body.site-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para corregir el espaciado vertical */
+body.login-body,
+body.signup-body {
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ajuste para páginas con formularios */
+.content-wrapper {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Asegurar espacio adecuado para contenido escaso */
+.content-wrapper > .container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* Navbar ocupa todo el ancho */
+.navbar {
+    width: 100%;
 }

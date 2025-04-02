@@ -1,0 +1,122 @@
+/* social.css - Estilos específicos para la página de redes sociales */
+
+.social-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    padding: 40px 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #F19C29;
+}
+
+.social-card-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.social-title {
+    color: #F19C29;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.social-title:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #F19C29;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.social-subtitle {
+    color: #F19C29;
+    font-weight: 600;
+    margin-bottom: 25px;
+    margin-top: 20px;
+}
+
+.social-text {
+    color: #6E3D23;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.social-message {
+    color: #907454;
+    font-size: 1rem;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.social-buttons {
+    margin-top: 25px;
+}
+
+.social-btn {
+    background-color: #F19C29 !important;
+    color: #6E3D23 !important;
+    font-weight: 600 !important;
+    padding: 10px 20px !important;
+    border-radius: 50px !important;
+    transition: all 0.3s ease !important;
+    margin: 0 10px 10px 0 !important;
+    border: none !important;
+}
+
+.social-btn:hover {
+    background-color: #C7781A !important;
+    color: #fff !important;
+    transform: translateY(-2px) !important;
+}
+
+.social-btn-outline {
+    background-color: transparent !important;
+    color: #6E3D23 !important;
+    border: 2px solid #6E3D23 !important;
+    font-weight: 500 !important;
+    padding: 10px 20px !important;
+    border-radius: 50px !important;
+    transition: all 0.3s ease !important;
+    margin: 0 10px 10px 0 !important;
+}
+
+.social-btn-outline:hover {
+    background-color: #6E3D23 !important;
+    color: #EED09D !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .social-card {
+        padding: 30px 20px;
+    }
+
+    .social-text {
+        font-size: 1rem;
+    }
+}
+
+.inicio-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* resto de propiedades... */
+}

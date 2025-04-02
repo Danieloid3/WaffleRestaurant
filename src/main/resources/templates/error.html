@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <title>Error - Waffle Restaurant</title>
+</head>
+<body class="inicio-body">
+<nav th:replace="~{layout :: navbar}"></nav>
+
+<div class="content-wrapper">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow border-0">
+                    <div class="card-header" style="background-color: #6E3D23; color: #EED09D;">
+                        <h3 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Error en la aplicación</h3>
+                    </div>
+                    <div class="card-body" style="background-color: rgba(255, 255, 255, 0.9);">
+                        <div class="alert" style="background-color: rgba(110, 61, 35, 0.2); border: 1px solid #6E3D23; color: #6E3D23;">
+                            <h4 th:if="${status}" th:text="${'Estado: ' + status}"></h4>
+                            <p th:if="${message}" th:text="${'Mensaje: ' + message}"></p>
+                            <p th:if="${exception}" th:text="${'Excepción: ' + exception}"></p>
+                            <p th:if="${trace}" th:text="${'Detalles: ' + trace}"></p>
+                        </div>
+
+                        <div class="mt-4 text-center">
+                            <a href="/" class="btn me-2" style="background-color: #F19C29; color: #6E3D23; font-weight: 600;">
+                                <i class="fas fa-home me-1"></i> Volver al inicio
+                            </a>
+                            <a href="javascript:history.back()" class="btn" style="background-color: transparent; color: #6E3D23; border: 1px solid #6E3D23; font-weight: 500;">
+                                <i class="fas fa-arrow-left me-1"></i> Volver atrás
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
