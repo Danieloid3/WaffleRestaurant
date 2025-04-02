@@ -94,7 +94,7 @@ public class PagoController {
             pagoService.eliminarPago(id);
 
             // También se puede marcar como rechazado si prefieres mantener el registro
-            // pago.setEstadoPago(false);
+            //pago.setEstadoPago(false);
             // pagoService.guardarPago(pago);
 
             ra.addFlashAttribute("message", "Pago rechazado correctamente");
