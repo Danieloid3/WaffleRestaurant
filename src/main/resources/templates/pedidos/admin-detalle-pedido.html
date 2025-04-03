@@ -111,17 +111,7 @@
             </div>
 
             <!-- Factura con validación -->
-            <div class="col-md-6" th:if="${pedido.factura != null}">
-                <div class="card factura-card">
-                    <div class="card-header">
-                        <h5 class="mb-0"><i class="fas fa-file-invoice-dollar me-2"></i>Información de la Factura</h5>
-                    </div>
-                    <div class="card-body">
-                        <!-- Contenido de la factura igual -->
-                        <!-- ... -->
-                    </div>
-                </div>
-            </div>
+
             <!-- Mensaje si no hay factura -->
             <div class="col-md-6" th:if="${pedido.factura == null}">
                 <div class="card factura-card">
